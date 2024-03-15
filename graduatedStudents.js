@@ -73,6 +73,18 @@ const students = [
   },
 ];
 
-const graduatedStudents = (listOfStudents) => {
-//Implement function
-};
+function graduatedStudents([{ name, graduated, email }, ...rest]) {
+  const result = [];
+  
+  if (graduated) {
+    result.push(`${name} has graduated and their diploma will be sent to ${email}.`);
+  } else {
+    result.push(`${name} has not graduated yet, no diploma will be sent.`);
+  }
+
+  if (rest.length > 0) {
+    return result.concat(graduatedStudents(rest));
+  } else {
+    return result;
+  }
+}
